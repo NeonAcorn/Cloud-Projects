@@ -1,17 +1,17 @@
 #### **1. Create an S3 Bucket**
-![[Pasted image 20250731111400.png]]
+<img width="428" height="164" alt="Pasted image 20250731111400" src="https://github.com/user-attachments/assets/5dbb3c4f-95cc-4c1a-a461-7499f1017c09" />
 #### **2. Create an SNS Topic**
-![[Pasted image 20250731111100.png]]
+<img width="1213" height="541" alt="Pasted image 20250731111100" src="https://github.com/user-attachments/assets/0f1dc676-96da-4720-b7f3-6e756451a6f6" />
 	We are going to keep it a `Standard` topic then give it a name like `notification-topic`
-#### **3. Create an SNS Topic**
-![[Pasted image 20250731111150.png]]
+#### **3. Create an SNS Subscription**
+<img width="1188" height="483" alt="Pasted image 20250731111150" src="https://github.com/user-attachments/assets/78426e62-8fdc-4742-bafd-20c0cb36e05c" />
 	After that create a subscription for the topic, I'll name it `notification-subscription`
 #### **4. Create an SQS Queue**
-![[Pasted image 20250731111014.png]]
+<img width="1320" height="485" alt="Pasted image 20250731111014" src="https://github.com/user-attachments/assets/fdbc2543-867b-4d0e-a741-50ebdcef57c6" />
 	We are going to keep it a `Standard` queue then give it a name like `notification-queue`
 
 #### **5. Create an Lambda function**
-![[Pasted image 20250731112353.png]]
+<img width="1140" height="800" alt="Pasted image 20250731112353" src="https://github.com/user-attachments/assets/35b4a84a-7f8d-4d78-ab04-b6332ee2a591" />
 	When making the function I will be using `Python` and making sure it will be creating a new role that I will edit after
 
 This is the code we will be using for the function. I will be updating `sns_topic_arn` and `sqs_queue_url` with the _ARN_ and _URL_ of my **SNS topic** and **SNS queue URL**
@@ -68,7 +68,7 @@ def lambda_handler(event, context):
 -
 	After making those changes I will deploy the code
 
-![[Pasted image 20250731110912.png]]
+<img width="1401" height="649" alt="Pasted image 20250731110912" src="https://github.com/user-attachments/assets/80e55a9c-50d1-4653-942a-1f561a856d62" />
 For the permissions you can make it with least privilege for security reason however for this I am just going to add `AmazonSNSFullAccess`, `AmazonSQSFullAccess` and I'll add a permission to access my bucket and the contents inside of it.
 ```json
 {
@@ -103,7 +103,7 @@ For the permissions you can make it with least privilege for security reason how
 7. Click **“Add”**.
 
 Go over to the S3 bucket and click on `properties` to make sure you see that there is an Event notification for the bucket leading back to the lambda function.
-![[Pasted image 20250731113040.png]]
+<img width="1632" height="294" alt="Pasted image 20250731113040" src="https://github.com/user-attachments/assets/953c4731-7316-4b2d-a0b4-19759d06c034" />
 #### **7. Upload a file to the S3 Bucket**
-![[Pasted image 20250731113327.png]]
+<img width="557" height="129" alt="Pasted image 20250731113327" src="https://github.com/user-attachments/assets/461cb213-5491-4735-838f-0459ccc4537b" />
 	If all is well you should receive an email.
